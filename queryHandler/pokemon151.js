@@ -11,14 +11,20 @@ let Pokemon151 = async (req, res) => {
 
     if (!cache[key]) {
         console.log('Cache missed')
+
         let pokemonAPIList = await axios.get(`${PKMNList}`);
+
         if (pokemonAPIList === undefined){
             res.status(400).send("Grass is too tall, no pokemon were found")   
            } 
         else {
+
             let pokemonArr = pokemonAPIList.data.results;
+            
             cache[key] = pokemonArr;
+            
             let nameArray = pokemonNameArray(pokemonArr);
+            
             console.log(nameArray);
             res.send(cache['pokemonNames']);
 
