@@ -2,10 +2,12 @@ require('dotenv').config();
 const axios = require('axios');
 const PKMNList = process.env.PKMNList;
 
+const pokemonNameArray = require('./pokemonNameArray');
+
 let cache = require('./cache');
 
 let Pokemon151 = async (req, res) => {
-    let key = PKMNList;
+    let key = 'pokemon151';
 
     if (!cache[key]) {
         console.log('Cache missed')
@@ -16,11 +18,14 @@ let Pokemon151 = async (req, res) => {
         else {
             let pokemonArr = pokemonAPIList.data.results;
             cache[key] = pokemonArr;
-            res.send(cache[key]);
+            let nameArray = pokemonNameArray(pokemonArr);
+            console.log(nameArray);
+            res.send(cache['pokemonNames']);
+
         }
     } else {
         console.log('Cache hit!')
-        res.send(cache[key]);
+        res.send(cache['pokemonNames']);
     }
 };
 
