@@ -39,20 +39,27 @@ let pokemonConstructor = async (req, res) => {
             let descriptionData = descriptionQueryData.data;
     
             //console.log(pokemonData);
+
+            let newName = '';
+            for(let i = 0 ; i < pokemonData.name.length ; i++ ) {
+                i == 0 ? 
+                newName += pokemonData.name[i].toUpperCase() : 
+                newName += pokemonData.name[i];
+            }
     
-            let pokemonName = pokemonData.name;
+            let pokemonName = newName;
     
             let pokemonId = pokemonData.id;
     
-            let pokemonMoves = pokemonData.moves.map((moves) => moves.move.name);
+            let pokemonMoves = pokemonData.moves.map((moves) => moves.move.name.toUpperCase());
     
             let pokemonSprites = pokemonData.sprites.other['official-artwork'].front_default;
 
-            let pokemonDescription = descriptionData.flavor_text_entries[0].flavor_text.replace(/[\r\n\f]/gm, ' ');
+            let pokemonDescription = descriptionData.flavor_text_entries[0].flavor_text.replace(/[\r\n\f]/gm, ' ').toUpperCase();
     
-            let pokemonStats = pokemonData.stats.map((stats) => ({name: stats.stat.name, baseStat: stats.base_stat}));
+            let pokemonStats = pokemonData.stats.map((stats) => ({name: stats.stat.name.toUpperCase(), baseStat: stats.base_stat}));
     
-            let pokemonTypes = pokemonData.types.map((types) => ({name: types.type.name}));
+            let pokemonTypes = pokemonData.types.map((types) => ({name: types.type.name.toUpperCase()}));
     
             const newPokemon = new Pokemon(pokemonName, pokemonId, pokemonMoves, pokemonSprites, pokemonDescription, pokemonStats, pokemonTypes);
         
