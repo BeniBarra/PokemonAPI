@@ -1,25 +1,22 @@
 const express = require('express');
 const app = express();
 
-require('dotenv').config();
-
 const cors = require('cors');
 app.use(cors());
 
-const getPokemon151 = require('./queryHandler/pokemon151')
+require('dotenv').config();
 
+const getPokemon151 = require('./queryHandler/pokemon151')
 const pokemonConstructor = require('./queryHandler/pokemonConstructor')
+const getPokemon151Copy = require('./queryHandler/pokemon151Copy')
 
 const PORT = process.env.PORT || 3002;
-const PKMNLIST = process.env.PKMNLIST;
-const PKMN = process.env.PKMN;
 
-app.get('/', (req,res) => {
-    res.send('This PokemonAPI server is LIVE')
-});
+let cache = require('./queryHandler/cache');
+let objectsKey = process.env.PKMN_OBJECTS;
 
-app.get('/151', (getPokemon151));
+app.get('', getPokemon151Copy);
 
-app.get('/list', (pokemonConstructor));
+app.get('/151', (req, res) => res.send(cache[objectsKey]));
 
 app.listen(PORT, () => console.log(`Listening on ${PORT}`));
