@@ -3,7 +3,7 @@ const axios = require('axios');
 
 const pokemonQuery = require('./pokemonQuery');
 const pokemonNameArray = require('./pokemonNameArray');
-const pokemonConstructorCopy = require('./pokemonConstructorCopy');
+const pokemonConstructor = require('./pokemonConstructor');
 
 let cache = require('./cache');
 
@@ -26,9 +26,9 @@ let Pokemon151 = async (req, res) => {
             cache[key] = pokemonArr;
             
             let nameArray = pokemonNameArray(pokemonArr);
-            console.log('names array: ' + nameArray);
+            //console.log('names array: ' + nameArray);
 
-            pokemonConstructorCopy();
+            pokemonConstructor();
 
             res.send(cache[objectsKey]);
 
