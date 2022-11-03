@@ -7,15 +7,13 @@ app.use(cors());
 require('dotenv').config();
 
 const getPokemon151 = require('./queryHandler/pokemon151')
-const pokemonConstructor = require('./queryHandler/pokemonConstructor')
-const getPokemon151Copy = require('./queryHandler/pokemon151Copy')
 
 const PORT = process.env.PORT || 3002;
 
 let cache = require('./queryHandler/cache');
 let objectsKey = process.env.PKMN_OBJECTS;
 
-app.get('', getPokemon151Copy);
+app.get('', getPokemon151);
 
 app.get('/151', (req, res) => res.send(cache[objectsKey]));
 
