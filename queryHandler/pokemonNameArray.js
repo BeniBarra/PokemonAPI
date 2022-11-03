@@ -2,7 +2,7 @@
 let cache = require('./cache');
 
 let PokemonNameArray = (pokemonObjArr) => {
-    let key = 'pokemonNames';
+    let key = process.env.PKMN_NAMES
 
     let pokemonNameArr = []
     
