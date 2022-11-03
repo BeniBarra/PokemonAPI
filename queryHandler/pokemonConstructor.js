@@ -4,7 +4,9 @@ const axios = require('axios');
 let cache = require('./cache')
 
 
-let key = 'pokemonObj';
+let key = process.env.PKMN_OBJECTS;
+let resultsKey = process.env.PKMN_151;
+
 
 class Pokemon {
     constructor(name, id, moves, sprites, description, stats, types){
@@ -21,8 +23,9 @@ class Pokemon {
 let pokemonConstructor = async (req, res) => {
     if(!cache[key]){
         console.log('Constructor Cache Miss');
+        console.log(resultsKey);
 
-        let pokemonFromCache = cache['pokemon151'];
+        let pokemonFromCache = cache[resultsKey];
 
         let newPokemonArr = [];
     
@@ -70,12 +73,12 @@ let pokemonConstructor = async (req, res) => {
                 newPokemonArr.sort((a,b) => (a.id > b.id) ? 1 : -1);
                 cache[key] = newPokemonArr;
                 console.log(cache[key]);
-                res.send(cache[key]);
+                return cache[key];
             }
         });
     } else {
         console.log('Constructor Cache Hit');
-        res.send(cache[key]);
+        return cache[key];
     }
 }
 
