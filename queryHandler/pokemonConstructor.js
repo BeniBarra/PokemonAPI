@@ -7,18 +7,7 @@ let cache = require('./cache')
 let key = process.env.PKMN_OBJECTS;
 let resultsKey = process.env.PKMN_151;
 
-
-class Pokemon {
-    constructor(name, id, moves, sprites, description, stats, types){
-        this.name = name;
-        this.id = id;
-        this.moves = moves;
-        this.sprites = sprites;
-        this.description = description;
-        this.stats = stats;
-        this.types = types;
-    }
-}
+let Pokemon = require('./pokemonClass');
 
 let pokemonConstructor = async (req, res) => {
     if(!cache[key]){
