@@ -25,8 +25,7 @@ let Pokemon151 = async (req, res) => {
             
             cache[key] = pokemonArr;
             
-            let nameArray = pokemonNameArray(pokemonArr);
-            //console.log('names array: ' + nameArray);
+            pokemonNameArray(pokemonArr);
 
             pokemonConstructor();
 
