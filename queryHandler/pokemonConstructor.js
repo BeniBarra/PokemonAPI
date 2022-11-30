@@ -1,3 +1,8 @@
+// The main goal of this function is to take the query information from the
+// pokeapi and filter out all the information we don't need, and then modifying
+// the information we require and passing it into a pokemon constructor to create 
+// individual objects for each pokemon to send as a renderable package to our front end
+
 require('dotenv').config();
 const axios = require('axios');
 
@@ -12,7 +17,7 @@ let Pokemon = require('./pokemonClass');
 let pokemonConstructor = async (req, res) => {
     if(!cache[key]){
         console.log('Constructor Cache Miss');
-        console.log(resultsKey);
+        //console.log(resultsKey);
 
         let pokemonFromCache = cache[resultsKey];
 
@@ -61,7 +66,7 @@ let pokemonConstructor = async (req, res) => {
             if(counter == pokemonFromCache.length) {
                 newPokemonArr.sort((a,b) => (a.id > b.id) ? 1 : -1);
                 cache[key] = newPokemonArr;
-                console.log(cache[key]);
+                //console.log(cache[key]);
                 return cache[key];
             }
         });
