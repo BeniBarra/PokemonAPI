@@ -1,6 +1,7 @@
 const axios  = require("axios")
 
-let generateCache = async () => {
+let generateCache = async () => 
+{
     await axios.get(process.env.BACK_END)
 }
 

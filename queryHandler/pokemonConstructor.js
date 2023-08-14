@@ -14,8 +14,10 @@ let resultsKey = process.env.PKMN_151;
 
 let Pokemon = require('./pokemonClass');
 
-let pokemonConstructor = async (req, res) => {
-    if(!cache[key]){
+let pokemonConstructor = async (req, res) => 
+{
+    if(!cache[key])
+    {
         console.log('Constructor Cache Miss');
         //console.log(resultsKey);
 
@@ -25,7 +27,8 @@ let pokemonConstructor = async (req, res) => {
     
         let counter = 0;
     
-        pokemonFromCache.forEach( async (data) => {
+        pokemonFromCache.forEach( async (data) => 
+        {
             
             let queryData = await axios.get(data.url);
 
@@ -38,7 +41,8 @@ let pokemonConstructor = async (req, res) => {
             //console.log(pokemonData);
 
             let newName = '';
-            for(let i = 0 ; i < pokemonData.name.length ; i++ ) {
+            for(let i = 0 ; i < pokemonData.name.length ; i++ ) 
+            {
                 i == 0 ? 
                 newName += pokemonData.name[i].toUpperCase() : 
                 newName += pokemonData.name[i];
@@ -63,14 +67,17 @@ let pokemonConstructor = async (req, res) => {
             newPokemonArr.push(newPokemon);
             counter++;
     
-            if(counter == pokemonFromCache.length) {
+            if(counter == pokemonFromCache.length) 
+            {
                 newPokemonArr.sort((a,b) => (a.id > b.id) ? 1 : -1);
                 cache[key] = newPokemonArr;
                 //console.log(cache[key]);
                 return cache[key];
             }
         });
-    } else {
+    } 
+    else 
+    {
         console.log('Constructor Cache Hit');
         return cache[key];
     }

@@ -7,20 +7,23 @@ const pokemonConstructor = require('./pokemonConstructor');
 
 let cache = require('./cache');
 
-let Pokemon151 = async (req, res) => {
+let Pokemon151 = async (req, res) => 
+{
     let key = process.env.PKMN_151;
     let objectsKey = process.env.PKMN_OBJECTS;
 
-    if (!cache[key]) {
+    if (!cache[key]) 
+    {
         console.log('Cache missed')
 
         let queryData = await pokemonQuery(key);
 
-        if (queryData === undefined){
+        if (queryData === undefined)
+        {
             res.status(400).send("Grass is too tall, no pokemon were found")   
-           } 
-        else {
-
+        } 
+        else 
+        {
             let pokemonArr = queryData.results;
             
             cache[key] = pokemonArr;
@@ -30,9 +33,10 @@ let Pokemon151 = async (req, res) => {
             pokemonConstructor();
 
             res.send(cache[objectsKey]);
-
         }
-    } else {
+    } 
+    else 
+    {
         console.log('Cache hit!')
         res.send(cache[objectsKey]);
     }

@@ -3,7 +3,8 @@ const axios = require('axios');
 
 let queryURL = process.env.PKMN_URL
 
-let PokemonQuery = async (req, res) => {
+let PokemonQuery = async (req, res) => 
+{
     let response;
     let data;
 
