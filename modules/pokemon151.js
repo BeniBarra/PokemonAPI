@@ -1,5 +1,5 @@
+//importing dotenv for envoirment variables, and axios for 
 require('dotenv').config();
-const axios = require('axios');
 
 const pokemonQuery = require('./pokemonQuery');
 const pokemonNameArray = require('./pokemonNameArray');
@@ -25,7 +25,7 @@ let Pokemon151 = async (req, res) =>
         else 
         {
             let pokemonArr = queryData.results;
-            
+
             cache[key] = pokemonArr;
             
             pokemonNameArray(pokemonArr);
