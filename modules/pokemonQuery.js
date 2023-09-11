@@ -15,6 +15,7 @@ let PokemonQuery = async (req, res) =>
         response === undefined ?
         res.status(400).send("Grass is too tall, no pokemon were found") :
         data = response.data;
+        
         return data;
 };
 
