@@ -1,6 +1,6 @@
 # PokemonAPI
 
-*This project was created as a tutorial and template to teach my brother back end web app development and general coding practices, as well as to reenforce my own understanding*
+*This project was created as a tutorial and template to teach my brother back end web app development and general coding practices, as well as to reinforce my own understanding*
 
 
 ## Approach
